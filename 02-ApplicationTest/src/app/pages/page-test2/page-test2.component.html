@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-md">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Test #2: Domingos al final del mes</h1>
+                    <hr>
+                    <form [formGroup]="form">
+                        <div class="input-group">
+                            <span class="input-group-text"><b>Fecha inicio:</b></span>
+                            <input type="date" formControlName="start" class="form-control" />
+                            <span class="input-group-text"><b>Fecha fin:</b></span>
+                            <input type="date" formControlName="end" class="form-control" />
+                        </div>
+                        <br>
+                        <div class="d-grid">
+                            <button (click)="getSundaysAtEndOfMonth()" type="button" class="btn btn-primary">Consultar</button>
+                        </div>
+                    </form>
+                    
+                    <div *ngIf="sundaysAtEndOfMonth">
+                        <hr>
+                        <h2>Cantidad de domingos al final del mes: {{ sundaysAtEndOfMonth | number }}</h2>
+                    </div>
+                    
+                    <div *ngIf="!sundaysAtEndOfMonth && isSubmitted">
+                        <hr>
+                        <div class="alert alert-danger">
+                            <h2>¡Atención!</h2>
+                            <p>No hay domingos al final del mes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

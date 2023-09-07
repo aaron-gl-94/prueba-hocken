@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-md">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Test #5: Contador de letras</h1>
+                    <hr>
+
+                    <form [formGroup]="form">
+                        <div class="form-group">
+                            <label for="s">Ingrese el texto que prefiera:  </label>
+                            <textarea type="text" formControlName="s" class="form-control"></textarea>
+                        </div>
+                        <br>
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-primary" (click)="getConteoLetras()">Consultar</button>
+                        </div>
+                    </form>
+                    
+                    <div *ngIf="conteoLetras && isSubmitted">
+                        <hr>
+                        <h2>Conteo de letras</h2>
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Letra:</th>
+                                    <th>Cantidad:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let letra of conteoLetras">
+                                    <td>{{ letra[0] }}</td>
+                                    <td>{{ letra[1] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div *ngIf="!conteoLetras && isSubmitted">
+                        <hr>
+                        <div class="alert alert-danger">
+
+                            <h2>Por favor, ingrese un texto...</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

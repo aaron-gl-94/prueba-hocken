@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-md">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Test #4: Matrices Rotada</h1>
+                    <hr>
+                    <div class="container">
+                    <h1>Matriz rotada</h1>
+                    
+                    <form [formGroup]="form">
+                        <div class="input-group">
+                            <span class="input-group-text"><b>Tamaño de la matriz:</b></span>
+                            <input type="number" formControlName="n" class="form-control" placeholder="Tamaño Matriz">
+                            <span class="input-group-text"><b>Las rotaciones fueron declaradas en duro en el controlador del componente.</b></span>
+                            <!-- <input type="text" formControlName="rotaciones" class="form-control" placeholder=" Rotaciones: [0,1,2,3,4]"> -->
+                        </div>
+                        <br>
+                        Coordenada de la posición a buscar:
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-text"><b>Cordenada X:</b></span>
+                            <input type="number" formControlName="x" class="form-control" placeholder="Coordenada X">
+                            <span class="input-group-text"><b>Cordenada Y:</b></span>
+                            <input type="number" formControlName="y" class="form-control" placeholder="Coordenada Y">
+                        </div>
+
+                        <br>
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-primary" (click)="mostrarMatriz()">Consultar</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

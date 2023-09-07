@@ -1,0 +1,74 @@
+<div class="container">
+
+    <div class="row pt-5">
+        <div class="col-md">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Test #1: Pronóstico del clima</h1>
+                    <hr>
+                
+                    <form [formGroup]="form" class="row align-items-center">
+                        <label>Consulta el clima de una ubicación por sus coordenadas, ej.: CDMX: 19.26132, 99.12327</label>
+
+                        <div class="input-group">
+                            <span class="input-group-text"><b>Coordenadas:</b></span>
+                            <input formControlName="latitude" type="text" class="form-control"  placeholder="Latitud, ej.: 19.26132"/>
+                            <input formControlName="longitude" type="text" class="form-control"  placeholder="Longitud, ej.: 99.12327"/>
+                            <button (click)="onGetWeather()" type="button" class="btn btn-primary">Consultar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="error">
+        <div class="row pt-2">
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>¡Atención! </h2>
+                        <div class="alert alert-danger">
+                            <p>{{ error }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="weather">
+        <div class="row pt-3">
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Próximas 6 horas</h2>
+                        <table class="table table-hover table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Temperatura</th>
+                                    <th>Humedad</th>
+                                    <th>Presión</th>
+                                    <th>Viento</th>
+                                    <th>Nubes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <tr *ngFor="let forecast of weather">
+                                    <td>{{ forecast.dt_txt }} UTC</td>
+                                    <td>{{ forecast.main.temp/10 | number }} ºC</td>
+                                    <td>{{ forecast.main.humidity }} %</td>
+                                    <td>{{ forecast.main.pressure }} hPa</td>
+                                    <td>{{ forecast.wind.speed }} m/s</td>
+                                    <td>{{ forecast.clouds.all }} %</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
