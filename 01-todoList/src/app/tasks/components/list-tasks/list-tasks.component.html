@@ -1,0 +1,102 @@
+<div class="row pt-2">
+    <div class="col-md">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md">
+                        <h5 class="card-title">Tareas nuevas: {{newTodos.length}}</h5>
+
+                        <div *ngIf="newTodos.length === 0; else newsTodoList" class="alert alert-warning">
+                            No hay tareas para mostrar
+                        </div>
+                        
+                        <ng-template #newsTodoList>
+                            <ul class="list-group">
+                                <li *ngFor="let todo of newTodos; let i = index" class="list-group-item"
+                                    [ngClass]="{'list-group-item-success': todo.status === 'end'}">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="form-check">
+                                                <input id="{{todo.id}}" (click)="updateStatusTodo(todo.id!, 'end')" type="checkbox"
+                                                    class="form-check-input">
+                                                <label for="{{todo.id}}" class="form-check-label">
+                                                    <b>{{ i + 1 }}.</b> {{todo.nameTodo}}
+                                                    <br>&nbsp;&nbsp; <small class="text-secondary"><em>{{todo.dateInitTodo | date}}</em></small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md mx-auto justify-content-end">
+                                            <button (click)="removeToDo(todo.id)" type="button" class="btn-close"></button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </div>
+
+                    <div class="col-md">
+                        <h5 class="card-title">Tareas terminadas: {{endTodos.length}}</h5>
+                        <div *ngIf="endTodos.length === 0; else endsTodoList" class="alert alert-warning">
+                            No hay tareas para mostrar
+                        </div>
+                    
+                        <ng-template #endsTodoList>
+                            <ul class="list-group">
+                                <li *ngFor="let todo of endTodos; let i = index" class="list-group-item"
+                                    [ngClass]="{'list-group-item-success': todo.status === 'end'}">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="form-check">
+                                                <input id="{{todo.id}}" (click)="updateStatusTodo(todo.id!, 'new')" type="checkbox" class="form-check-input" checked>
+                                                <label for="{{todo.id}}" class="form-check-label">
+                                                    <b>{{ i + 1 }}.</b> {{todo.nameTodo}}
+                                                    <br>&nbsp;&nbsp; <small class="text-secondary"><em>{{todo.dateInitTodo | date}}</em></small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md mx-auto justify-content-end">
+                                            <button (click)="removeToDo(todo.id)" type="button" class="btn-close"></button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </div>
+                </div>
+
+                <div class="row pt-2">
+                    <div class="col-md">
+                        <div class="btn-group d-flex">
+                            <button type="button" (click)="updateAllToDo('end')" class="btn btn-success">Terminar Todo</button>
+                            <button type="button" (click)="updateAllToDo('new')" class="btn btn-primary">Rehacer Todo</button>
+                            <button type="button" (click)="removeAllToDo()" class="btn btn-warning">Borrar Tareas</button>
+                            <button type="button" (click)="resetToDos()" class="btn btn-danger">Reset App</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row pt-2">
+    <div class="col-md">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Tareas eliminadas: {{removedTodos.length}}</h5>
+                <hr>
+                <ul class="list-group">
+                    <li *ngFor="let todo of removedTodos; let i = index" class="list-group-item list-group-item-danger disabled">
+                        <div class="form-check w-75">
+                            <label class="form-check-label" for="flexCheckDefault1">
+                                <b>{{ i + 1 }}.</b> {{todo.nameTodo}}
+                                <br>&nbsp;&nbsp; <small class="text-secondary"><em>{{todo.dateInitTodo | date}}</em></small>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
